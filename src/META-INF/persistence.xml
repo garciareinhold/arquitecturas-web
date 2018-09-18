@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="tp-especial-arqWeb">
+		<description>Contexto de persistencia con Apache Derby, Hibernate y entidades JPA definidas mediante anotaciones</description>
+		
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<!-- <class>com.tudai.practico2ejemplo.entidades.Torneo</class> -->
+
+		<properties>
+			 <!-- Propieadades de configuracion de JDBC para MySQL -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+       value="jdbc:mysql://localhost:3306/tpEspecialArqWeb?createDatabaseIfNotExist=true" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" /> 
+			
+			<!-- Propiedad para la generacion automatica del esquema de base de datos -->
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+		</properties>
+	</persistence-unit>
+
+</persistence>
