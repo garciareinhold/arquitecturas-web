@@ -3,15 +3,35 @@ package com.tudai.practico2ejemplo.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="TABLA_Usuarios")
 public class Usuario {
-	String nombre;
-	String apellido;
+	@Id
 	Long dni;
-	List <Revision>revision;
+	@Column(nullable = false)
+	String nombre;
+	@Column(nullable = false)
+	String apellido;
+	@Column(nullable = false)
 	boolean esExperto;
-	List <Trabajo> trabajos;
+	@Column(nullable = false)
 	boolean esEvaluador;
+	@Column(nullable = false)
 	String lugarDeTrabajo;
+	@ManyToMany
+	List <Revision>revision;
+	@ManyToMany
+	List <Trabajo> trabajos;
+	
 	List<String> temasConocimiento;
 		public Usuario() {
 			

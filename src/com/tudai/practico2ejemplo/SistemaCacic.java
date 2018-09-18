@@ -20,8 +20,8 @@ public class SistemaCacic {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp-especial-arqWeb");
 		EntityManager entitymanager = emf.createEntityManager();
-//		entitymanager.getTransaction( ).begin( );
-
+		entitymanager.getTransaction( ).begin( );
+		
 
 		entitymanager.close();
 		emf.close();
