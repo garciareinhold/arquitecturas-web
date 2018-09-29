@@ -10,10 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TABLA_Usuarios")
+//@Table(name="TABLA_Usuarios")
 public class Usuario {
 	@Id
 	Long dni;
@@ -27,7 +28,7 @@ public class Usuario {
 	boolean esEvaluador;
 	@Column(nullable = false)
 	String lugarDeTrabajo;
-	@ManyToMany
+	@OneToMany(mappedBy="evaluador")
 	List <Revision>revision;
 	@ManyToMany
 	List <Trabajo> trabajos;
@@ -48,5 +49,8 @@ public class Usuario {
 			this.revision= new ArrayList();
 			this.trabajos=new ArrayList();
 			this.temasConocimiento= new ArrayList();
+		}
+		public List<String> getTemasConocimiento() {
+			return new ArrayList<String>(this.temasConocimiento);
 		}
 	}

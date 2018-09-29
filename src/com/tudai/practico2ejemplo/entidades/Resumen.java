@@ -2,7 +2,16 @@ package com.tudai.practico2ejemplo.entidades;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Resumen extends Trabajo {
+
+	@Override
+	public boolean aceptarEvaluador() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 	
@@ -10,9 +19,5 @@ public class Resumen extends Trabajo {
 //		super(palabrasClave, nombre, autores);
 //
 //	}
-	@Override
-	public void aceptaEvaluador(Usuario evaluador) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }
