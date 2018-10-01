@@ -7,10 +7,7 @@ public class Articulo extends Trabajo {
 
 	@Override
 	public boolean aceptarEvaluador() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 
 }

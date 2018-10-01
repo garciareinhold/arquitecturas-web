@@ -37,6 +37,7 @@ public class Usuario {
 		public Usuario() {
 			
 		}
+
 		public Usuario(String nombre, String apellido, Long dni, boolean esExperto, boolean esEvaluador,
 				String lugarDeTrabajo) {
 			super();
@@ -46,11 +47,13 @@ public class Usuario {
 			this.esExperto = esExperto;
 			this.esEvaluador = esEvaluador;
 			this.lugarDeTrabajo = lugarDeTrabajo;
-			this.revision= new ArrayList();
-			this.trabajos=new ArrayList();
-			this.temasConocimiento= new ArrayList();
+			this.revision = new ArrayList();
+			this.trabajos = new ArrayList();
+			this.temasConocimiento = new ArrayList();
 		}
+
 		public List<String> getTemasConocimiento() {
 			return new ArrayList<String>(this.temasConocimiento);
 		}
+		
 	}

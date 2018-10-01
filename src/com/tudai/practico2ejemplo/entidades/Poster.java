@@ -12,7 +12,6 @@ public class Poster extends Trabajo{
 
 	@Override
 	public boolean aceptarEvaluador() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

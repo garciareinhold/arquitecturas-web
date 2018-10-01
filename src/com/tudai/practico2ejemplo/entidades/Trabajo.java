@@ -20,37 +20,39 @@ public abstract class Trabajo {
 	List<Usuario> autores;
 	@OneToMany(mappedBy="trabajo")
 	List<Revision> revisiones;
+
 	public Trabajo() {
 		this.autores=new ArrayList<Usuario> ();
 	}
 	
 	public Trabajo(List<String>palabrasClave, String nombre,List <Usuario> autores) {
-		this.palabrasClave= new ArrayList<String>(palabrasClave);
-		this.nombre=nombre;
-		this.autores=new ArrayList<Usuario> (autores);
-
+		this.palabrasClave = new ArrayList<String>(palabrasClave);
+		this.nombre = nombre;
+		this.autores = new ArrayList<Usuario> (autores);
 	}
 	
 	public abstract boolean aceptarEvaluador();
 //	este metodo lo vamos a implementar en cada clase
 	
 	public boolean acreditaConocimientos(Usuario evaluador) {
-		int iter=0;
+		int index = 0;
 		if(this.palabrasClave.size()>evaluador.getTemasConocimiento().size()) {
 			return false;
 		}
-		while(iter<this.palabrasClave.size()) {
-			String tema= this.palabrasClave.get(iter);
+		while(index<this.palabrasClave.size()) {
+			String tema= this.palabrasClave.get(index);
 			if(!evaluador.getTemasConocimiento().contains(tema)) {
 				return false;
 			}
-			iter++;
+			index++;
 		}
 		return true;
 	};
+
 	public void addAutor(Usuario autor) {
 		autores.add(autor);
 	}
+	
 	public void addAutores(List <Usuario> autores) {
 		this.autores=new ArrayList<Usuario> (autores);
 	}
