@@ -44,5 +44,8 @@ public class Revision {
 		return "Revision [id=" + id + ", evaluador=" + evaluador + ", trabajo=" + trabajo + ", fechaRevision="
 				+ fechaRevision + "]";
 	}
+	public int getId() {
+		return id;
+	}
 	
 }

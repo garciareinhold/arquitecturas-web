@@ -174,77 +174,80 @@ public class TestEntrega {
 
 		//////////////REVISIONES
 
-		Calendar fechaRevision = new GregorianCalendar(2013,0,31);
+		Calendar fechaRevision1 = new GregorianCalendar(2013,0,31);
+		Calendar fechaRevision2 = new GregorianCalendar(2011,0,31);
+		Calendar fechaRevision3 = new GregorianCalendar(2017,0,31);
+		Calendar fechaRevision4= new GregorianCalendar(2018,0,31);
 
 		Revision rev= new Revision();
 		rev.setEvaluador(user);
 		user.addRevision(rev);
 		rev.setTrabajo(poster);
 		poster.addReview(rev);
-		rev.setFechaRevision(fechaRevision);
+		rev.setFechaRevision(fechaRevision1);
 
 		Revision rev10= new Revision();
 		rev10.setEvaluador(user2);
 		user2.addRevision(rev10);
 		rev10.setTrabajo(poster2);
 		poster2.addReview(rev10);
-		rev10.setFechaRevision(fechaRevision);
+		rev10.setFechaRevision(fechaRevision2);
 
 		Revision rev2= new Revision();
 		rev2.setEvaluador(user3);
 		user3.addRevision(rev2);
 		rev2.setTrabajo(poster3);
 		poster3.addReview(rev2);
-		rev2.setFechaRevision(fechaRevision);
+		rev2.setFechaRevision(fechaRevision3);
 
 		Revision rev3= new Revision();
 		rev3.setEvaluador(user4);
 		user4.addRevision(rev3);
 		rev3.setTrabajo(poster4);
 		poster4.addReview(rev3);
-		rev3.setFechaRevision(fechaRevision);
+		rev3.setFechaRevision(fechaRevision4);
 
 		Revision rev4= new Revision();
 		rev4.setEvaluador(user5);
 		user5.addRevision(rev4);
 		rev4.setTrabajo(resume);
 		resume.addReview(rev4);
-		rev4.setFechaRevision(fechaRevision);
+		rev4.setFechaRevision(fechaRevision1);
 
 		Revision rev5= new Revision();
 		rev5.setEvaluador(user6);
 		user6.addRevision(rev5);
 		rev5.setTrabajo(resume2);
 		resume2.addReview(rev5);
-		rev5.setFechaRevision(fechaRevision);
+		rev5.setFechaRevision(fechaRevision2);
 
 		Revision rev6= new Revision();
 		rev6.setEvaluador(user7);
 		user7.addRevision(rev6);
 		rev6.setTrabajo(articulo);
 		articulo.addReview(rev6);
-		rev6.setFechaRevision(fechaRevision);
+		rev6.setFechaRevision(fechaRevision3);
 
 		Revision rev7= new Revision();
 		rev7.setEvaluador(user8);
 		user8.addRevision(rev7);
 		rev7.setTrabajo(articulo2);
 		articulo2.addReview(rev7);
-		rev7.setFechaRevision(fechaRevision);
+		rev7.setFechaRevision(fechaRevision4);
 
 		Revision rev8= new Revision();
-		rev8.setEvaluador(user9);
-		user9.addRevision(rev8);
+		rev8.setEvaluador(user10);
+		user10.addRevision(rev8);
 		rev8.setTrabajo(poster);
 		poster.addReview(rev8);
-		rev8.setFechaRevision(fechaRevision);
+		rev8.setFechaRevision(fechaRevision1);
 
 		Revision rev9= new Revision();
 		rev9.setEvaluador(user10);
 		user10.addRevision(rev9);
 		rev9.setTrabajo(poster2);
 		poster2.addReview(rev9);
-		rev9.setFechaRevision(fechaRevision);
+		rev9.setFechaRevision(fechaRevision2);
 
 
 		////////// PERSIST
@@ -300,8 +303,44 @@ public class TestEntrega {
 		for (int i = 0; i < trabajos.size(); i++) {
 			System.out.println(trabajos.get(i).getNombre());
 		}
-		System.out.println();
+		System.out.println("termina buscar trabajo");
 		entityManager.close();
 
+	}
+	@Test
+	public void buscarRevisiones() {
+		EntityManager entityManager= emf.createEntityManager();
+		Calendar desde = new GregorianCalendar(2011,0,31);
+		Calendar hasta = new GregorianCalendar(2013,0,31);
+		ArrayList <Revision> trabajos = new ArrayList <Revision>(UsuarioDAO.getInstance().findRevisiones(10,desde,hasta, entityManager));
+		for (int i = 0; i < trabajos.size(); i++) {
+			System.out.println(trabajos.get(i).getId());
+		}
+		System.out.println("termina buscar Revisiones");
+		entityManager.close();
+
+	}
+	@Test
+	public void buscarTrabajosAutores() {
+		EntityManager entityManager= emf.createEntityManager();
+
+		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(UsuarioDAO.getInstance().findTrabajosAutores(10, entityManager));
+		for (int i = 0; i < trabajos.size(); i++) {
+			System.out.println(trabajos.get(i).getNombre());
+		}
+		System.out.println("termina buscar Trabajps Autores");
+		entityManager.close();
+	}
+	@Test
+	public void buscarTrabajoByID() {
+		EntityManager entityManager= emf.createEntityManager();
+		Trabajo work = TrabajoDAO.getInstance().findById(7, entityManager);
+		System.out.println(work.getNombre());
+	}
+	@Test
+	public void buscarTrabajoByNombre() {
+		EntityManager entityManager= emf.createEntityManager();
+		Trabajo work = TrabajoDAO.getInstance().findByNombre("JavaScript", entityManager);
+		System.out.println(work.getNombre());
 	}
 }
