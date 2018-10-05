@@ -1,5 +1,7 @@
 package entrega.arquitectura.test;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -279,11 +281,7 @@ public class TestEntrega {
 		TrabajoDAO.getInstance().persist(articulo2, entityManager);
 		TrabajoDAO.getInstance().persist(articulo3, entityManager);
 		TrabajoDAO.getInstance().persist(resume3, entityManager);
-
-
-
 		entityManager.close();
-//		emf.close();
 
 	}
 
@@ -293,6 +291,17 @@ public class TestEntrega {
 		EntityManager entityManager= emf.createEntityManager();
 		Usuario user2= UsuarioDAO.getInstance().findById(2, entityManager);
 		System.out.println(user2.toString());
+		entityManager.close();
+	}
+	@Test
+	public void BuscarTrabajosAsignados() {
+		EntityManager entityManager= emf.createEntityManager();
+		List  trabajos =(List)UsuarioDAO.getInstance().findTrabajos(10, entityManager);
+		for (int i = 0; i < trabajos.si; i++) {
+			array_type array_element = trabajos[i];
+			
+		}
+		System.out.println();
 		entityManager.close();
 	}
 }

@@ -1,12 +1,14 @@
 package entrega.arquitectura.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
-
+import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
 
 
@@ -53,7 +55,14 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
 			return false;
 		}
 	}
-
+	public List<Trabajo> findTrabajos(Integer id,EntityManager entityManager){
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createNativeQuery("SELECT t.* FROM revision r Join trabajo t on(r.trabajo_id=t.id and r.evaluador_dni = :revId)");
+		query.setParameter("revId", id);
+		List <Trabajo>trabajos=query.getResultList();
+		entityManager.getTransaction().commit();
+		return trabajos;
+	}
 
 	public Usuario update(Integer id, Usuario newEntityValues, EntityManager entityManager) {
 		return null;

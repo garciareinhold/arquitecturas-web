@@ -33,8 +33,8 @@ public class Usuario {
 	List <Revision>revision;
 	@ManyToMany(cascade= CascadeType.ALL)
 	List <Trabajo> trabajos;
-//	
-//	List<String> temasConocimiento;
+	@Column(nullable = true)
+	String temasConocimiento;
 	public Usuario() {
 		this.revision= new ArrayList<Revision>();
 		this.trabajos=new ArrayList<Trabajo>();
@@ -57,7 +57,7 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", esExperto=" + esExperto
 				+ ", esEvaluador=" + esEvaluador + ", lugarDeTrabajo=" + lugarDeTrabajo + ", revision=" + revision
-				+ ", trabajos=" + trabajos + "]";
+				+ ", trabajos=" + trabajos + ", temas de conocimiento="+ temasConocimiento +"]";
 	}
 	public int getDni() {
 		return dni;
@@ -101,6 +101,13 @@ public class Usuario {
 	public void addTrabajos(Trabajo work) {
 		this.trabajos.add(work);
 	}
+	public String getTemasConocimiento() {
+		return temasConocimiento;
+	}
+	public void setTemasConocimiento(String temasConocimiento) {
+		this.temasConocimiento = temasConocimiento;
+	}
+	
 //	public List<Revision> getRevision() {
 //		return revision;
 //	}
