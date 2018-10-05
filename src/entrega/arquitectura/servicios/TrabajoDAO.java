@@ -1,5 +1,6 @@
 package entrega.arquitectura.servicios;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,13 +8,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entrega.arquitectura.entidades.Revision;
 import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
 
 public class TrabajoDAO implements DAO<Trabajo,Integer>{
 
 	private static TrabajoDAO daoTrabajo;
-	
+
 	private TrabajoDAO(){}
 
 	public static TrabajoDAO getInstance() {
@@ -44,7 +46,7 @@ public class TrabajoDAO implements DAO<Trabajo,Integer>{
 		throw new UnsupportedOperationException();
 	}
 
-	
+
 	public boolean delete(Integer id, EntityManager entityManager) {
 		throw new UnsupportedOperationException();
 	}
@@ -55,5 +57,15 @@ public class TrabajoDAO implements DAO<Trabajo,Integer>{
 	public Trabajo update(Integer id, Trabajo newEntityValues, EntityManager entityManager) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<Trabajo> findByUserTema(int id, String campo, EntityManager entityManager) {
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createNativeQuery("SELECT t.* FROM trabajo t JOIN usuario_trabajo u on(u.trabajos_id= t.id) WHERE (autores_dni= :userId) AND (t.temasConocimiento LIKE :tema)", Trabajo.class);
+		query.setParameter("userId", id);
+		query.setParameter("tema", "%" + campo + "%");
+		entityManager.getTransaction().commit();
+		List <Trabajo>trabajos=query.getResultList();
+		return trabajos;
 	}
 }

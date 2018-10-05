@@ -17,7 +17,8 @@ public abstract class Trabajo {
 	@Id
 	@GeneratedValue
 	int id;
-//	List<String> palabrasClave ;
+	@Column(nullable = true)
+	String temasConocimiento ;
 	@Column(nullable = false)
 	String nombre;
 	@ManyToMany(mappedBy="trabajos")
@@ -30,14 +31,6 @@ public abstract class Trabajo {
 		this.revisiones=new ArrayList<Revision> ();
 	}
 	
-	public Trabajo(List<String>palabrasClave, String nombre,List <Usuario> autores) {
-//		this.palabrasClave= new ArrayList<String>(palabrasClave);
-		this.nombre=nombre;
-//		this.autores=new ArrayList<Usuario> (autores);
-
-	}
-	
-	
 	@Override
 	public String toString() {
 		return "Trabajo [id=" + id + ", nombre=" + nombre + ", autores=" + autores + ", revisiones=" + revisiones + "]";
@@ -49,6 +42,14 @@ public abstract class Trabajo {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void setTemasConocimiento(String temas) {
+		this.temasConocimiento = temas;
+	}
+	
+	public String getTemasConocimiento(String temas) {
+		return this.temasConocimiento = temas;
 	}
 
 	public abstract boolean aceptarEvaluador();

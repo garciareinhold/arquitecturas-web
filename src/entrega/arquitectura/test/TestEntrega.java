@@ -125,6 +125,7 @@ public class TestEntrega {
 		poster.setNombre("Dinamica");
 		poster.addAutor(user);
 		user.addTrabajos(poster);
+		poster.setTemasConocimiento("dfsdf dsggg gsgsafg dgfg Redes dfsg fgdsdfg");
 
 		Trabajo articulo = new Articulo();
 		articulo.setNombre("Derivadas");
@@ -343,4 +344,15 @@ public class TestEntrega {
 		Trabajo work = TrabajoDAO.getInstance().findByNombre("JavaScript", entityManager);
 		System.out.println(work.getNombre());
 	}
+	
+	@Test
+	public void buscarTrabajoNombreTema() {
+		EntityManager entityManager= emf.createEntityManager();
+		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(TrabajoDAO.getInstance().findByUserTema(1, "Redes", entityManager));
+		for (int i = 0; i < trabajos.size(); i++) {
+			System.out.println(trabajos.get(i).getNombre() + "  Este trabajo pertenece a buscarTrabajoNombreTema!!!!!");
+		}
+		entityManager.close();
+	}
+	
 }
