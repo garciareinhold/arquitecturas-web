@@ -34,6 +34,10 @@ public class TestEntrega {
 	public static void setEntityManeger() {
 		emf= Persistence.createEntityManagerFactory("TpEspecialArqWeb");
 	}
+	
+	/**
+	 * Metodo que corresponde al inciso a, b y c.
+	 */
 	@Test
 	public void altaUsuariosTrabajosRevisiones() {
 		EntityManager entityManager= emf.createEntityManager();
@@ -290,6 +294,9 @@ public class TestEntrega {
 	}
 
 
+	/**
+	 * Este método corresponde al inciso d-1.
+	 */
 	@Test
 	public void getDatosUsuario() {
 		EntityManager entityManager= emf.createEntityManager();
@@ -297,6 +304,10 @@ public class TestEntrega {
 		System.out.println(user2.getDni());
 		entityManager.close();
 	}
+	
+	/**
+	 * Este método corresponde al inciso d-2.
+	 */
 	@Test
 	public void BuscarTrabajosAsignados() {
 		EntityManager entityManager= emf.createEntityManager();
@@ -308,6 +319,10 @@ public class TestEntrega {
 		entityManager.close();
 
 	}
+	
+	/**
+	 * Este método corresponde al inciso d-3.
+	 */
 	@Test
 	public void buscarRevisiones() {
 		EntityManager entityManager= emf.createEntityManager();
@@ -321,6 +336,10 @@ public class TestEntrega {
 		entityManager.close();
 
 	}
+	
+	/**
+	 * Este método corresponde al inciso d-4.
+	 */
 	@Test
 	public void buscarTrabajosAutores() {
 		EntityManager entityManager= emf.createEntityManager();
@@ -332,12 +351,20 @@ public class TestEntrega {
 		System.out.println("termina buscar Trabajps Autores");
 		entityManager.close();
 	}
+	
+	/**
+	 * Este método corresponde al inciso f.
+	 */
 	@Test
 	public void buscarTrabajoByID() {
 		EntityManager entityManager= emf.createEntityManager();
 		Trabajo work = TrabajoDAO.getInstance().findById(7, entityManager);
 		System.out.println(work.getNombre());
 	}
+	
+	/**
+	 * Este método corresponde al inciso f-v2(string).
+	 */
 	@Test
 	public void buscarTrabajoByNombre() {
 		EntityManager entityManager= emf.createEntityManager();
@@ -345,6 +372,9 @@ public class TestEntrega {
 		System.out.println(work.getNombre());
 	}
 	
+	/**
+	 * Este método corresponde al inciso g.
+	 */
 	@Test
 	public void buscarTrabajoNombreTema() {
 		EntityManager entityManager= emf.createEntityManager();
