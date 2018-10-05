@@ -57,10 +57,10 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
 	}
 	public List<Trabajo> findTrabajos(Integer id,EntityManager entityManager){
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createNativeQuery("SELECT t.* FROM revision r Join trabajo t on(r.trabajo_id=t.id and r.evaluador_dni = :revId)");
+		Query query = entityManager.createNativeQuery("SELECT t.* FROM revision r Join trabajo t on(r.trabajo_id=t.id and r.evaluador_dni = :revId)", Trabajo.class);
 		query.setParameter("revId", id);
-		List <Trabajo>trabajos=query.getResultList();
 		entityManager.getTransaction().commit();
+		List <Trabajo>trabajos=query.getResultList();
 		return trabajos;
 	}
 

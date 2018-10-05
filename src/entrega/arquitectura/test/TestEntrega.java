@@ -290,18 +290,15 @@ public class TestEntrega {
 	public void getDatosUsuario() {
 		EntityManager entityManager= emf.createEntityManager();
 		Usuario user2= UsuarioDAO.getInstance().findById(2, entityManager);
-		System.out.println(user2.toString());
-		entityManager.close();
+		System.out.println(user2.getDni());
 	}
 	@Test
 	public void BuscarTrabajosAsignados() {
 		EntityManager entityManager= emf.createEntityManager();
-		List  trabajos =(List)UsuarioDAO.getInstance().findTrabajos(10, entityManager);
-		for (int i = 0; i < trabajos.si; i++) {
-			array_type array_element = trabajos[i];
-			
+		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(UsuarioDAO.getInstance().findTrabajos(10, entityManager));
+		for (int i = 0; i < trabajos.size(); i++) {
+			System.out.println(trabajos.get(i).getNombre());
 		}
 		System.out.println();
-		entityManager.close();
 	}
 }

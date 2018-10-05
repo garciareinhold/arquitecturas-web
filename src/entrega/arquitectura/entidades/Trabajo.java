@@ -37,6 +37,12 @@ public abstract class Trabajo {
 
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Trabajo [id=" + id + ", nombre=" + nombre + ", autores=" + autores + ", revisiones=" + revisiones + "]";
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
