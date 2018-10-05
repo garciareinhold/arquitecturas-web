@@ -39,4 +39,10 @@ public class Revision {
 	public void setFechaRevision(Calendar fechaRevision) {
 		this.fechaRevision = fechaRevision;
 	}
+	@Override
+	public String toString() {
+		return "Revision [id=" + id + ", evaluador=" + evaluador + ", trabajo=" + trabajo + ", fechaRevision="
+				+ fechaRevision + "]";
+	}
+	
 }

@@ -184,65 +184,65 @@ public class TestEntrega {
 		rev.setFechaRevision(fechaRevision);
 
 		Revision rev10= new Revision();
-		rev.setEvaluador(user2);
+		rev10.setEvaluador(user2);
 		user2.addRevision(rev10);
-		rev.setTrabajo(poster2);
+		rev10.setTrabajo(poster2);
 		poster2.addReview(rev10);
 		rev10.setFechaRevision(fechaRevision);
 
 		Revision rev2= new Revision();
-		rev.setEvaluador(user3);
+		rev2.setEvaluador(user3);
 		user3.addRevision(rev2);
-		rev.setTrabajo(poster3);
+		rev2.setTrabajo(poster3);
 		poster3.addReview(rev2);
 		rev2.setFechaRevision(fechaRevision);
 
 		Revision rev3= new Revision();
-		rev.setEvaluador(user4);
+		rev3.setEvaluador(user4);
 		user4.addRevision(rev3);
-		rev.setTrabajo(poster4);
+		rev3.setTrabajo(poster4);
 		poster4.addReview(rev3);
 		rev3.setFechaRevision(fechaRevision);
 
 		Revision rev4= new Revision();
-		rev.setEvaluador(user5);
+		rev4.setEvaluador(user5);
 		user5.addRevision(rev4);
-		rev.setTrabajo(resume);
+		rev4.setTrabajo(resume);
 		resume.addReview(rev4);
 		rev4.setFechaRevision(fechaRevision);
 
 		Revision rev5= new Revision();
-		rev.setEvaluador(user6);
+		rev5.setEvaluador(user6);
 		user6.addRevision(rev5);
-		rev.setTrabajo(resume2);
+		rev5.setTrabajo(resume2);
 		resume2.addReview(rev5);
 		rev5.setFechaRevision(fechaRevision);
 
 		Revision rev6= new Revision();
-		rev.setEvaluador(user7);
+		rev6.setEvaluador(user7);
 		user7.addRevision(rev6);
-		rev.setTrabajo(articulo);
+		rev6.setTrabajo(articulo);
 		articulo.addReview(rev6);
 		rev6.setFechaRevision(fechaRevision);
 
 		Revision rev7= new Revision();
-		rev.setEvaluador(user8);
+		rev7.setEvaluador(user8);
 		user8.addRevision(rev7);
-		rev.setTrabajo(articulo2);
+		rev7.setTrabajo(articulo2);
 		articulo2.addReview(rev7);
 		rev7.setFechaRevision(fechaRevision);
 
 		Revision rev8= new Revision();
-		rev.setEvaluador(user9);
+		rev8.setEvaluador(user9);
 		user9.addRevision(rev8);
-		rev.setTrabajo(poster);
+		rev8.setTrabajo(poster);
 		poster.addReview(rev8);
 		rev8.setFechaRevision(fechaRevision);
 
 		Revision rev9= new Revision();
-		rev.setEvaluador(user10);
+		rev9.setEvaluador(user10);
 		user10.addRevision(rev9);
-		rev.setTrabajo(poster2);
+		rev9.setTrabajo(poster2);
 		poster2.addReview(rev9);
 		rev9.setFechaRevision(fechaRevision);
 
@@ -291,6 +291,7 @@ public class TestEntrega {
 		EntityManager entityManager= emf.createEntityManager();
 		Usuario user2= UsuarioDAO.getInstance().findById(2, entityManager);
 		System.out.println(user2.getDni());
+		entityManager.close();
 	}
 	@Test
 	public void BuscarTrabajosAsignados() {
@@ -300,5 +301,7 @@ public class TestEntrega {
 			System.out.println(trabajos.get(i).getNombre());
 		}
 		System.out.println();
+		entityManager.close();
+
 	}
 }

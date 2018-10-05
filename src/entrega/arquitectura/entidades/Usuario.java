@@ -29,7 +29,7 @@ public class Usuario {
 	boolean esEvaluador;
 	@Column(nullable = false)
 	String lugarDeTrabajo;
-	@OneToMany(mappedBy="evaluador", orphanRemoval=true)
+	@OneToMany(mappedBy="evaluador")
 	List <Revision>revision;
 	@ManyToMany(cascade= CascadeType.ALL)
 	List <Trabajo> trabajos;
