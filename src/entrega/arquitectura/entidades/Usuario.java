@@ -1,6 +1,7 @@
 package entrega.arquitectura.entidades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,7 +39,6 @@ public class Usuario {
 	public Usuario() {
 		this.revision= new ArrayList<Revision>();
 		this.trabajos=new ArrayList<Trabajo>();
-//		this.temasConocimiento= new ArrayList();
 	}
 	public Usuario(String nombre, String apellido, int dni, boolean esExperto, boolean esEvaluador,
 			String lugarDeTrabajo) {
@@ -49,9 +49,6 @@ public class Usuario {
 		this.esExperto = esExperto;
 		this.esEvaluador = esEvaluador;
 		this.lugarDeTrabajo = lugarDeTrabajo;
-//		this.revision= new ArrayList();
-//		this.trabajos=new ArrayList();
-//		this.temasConocimiento= new ArrayList();
 	}
 	@Override
 	public String toString() {
@@ -101,8 +98,9 @@ public class Usuario {
 	public void addTrabajos(Trabajo work) {
 		this.trabajos.add(work);
 	}
-	public String getTemasConocimiento() {
-		return temasConocimiento;
+	public List<String> getTemasConocimiento() {
+		List <String> retorno= new ArrayList<String>(Arrays.asList(this.temasConocimiento.split(" ")));  
+		return retorno;
 	}
 	public void setTemasConocimiento(String temasConocimiento) {
 		this.temasConocimiento = temasConocimiento;

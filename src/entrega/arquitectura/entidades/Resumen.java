@@ -8,18 +8,9 @@ import javax.persistence.Entity;
 public class Resumen extends Trabajo {
 
 	@Override
-	public boolean aceptarEvaluador() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean acreditaConocimientos(Usuario evaluador) {
+		return this.temasConocimiento.contains(evaluador.temasConocimiento); 	
 	}
 
-
-
-
-	
-//	public Resumen(List<String>palabrasClave, String nombre,List <Usuario> autores) {
-//		super(palabrasClave, nombre, autores);
-//
-//	}
 
 }

@@ -1,6 +1,7 @@
 package entrega.arquitectura.entidades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,6 +32,20 @@ public abstract class Trabajo {
 		this.revisiones=new ArrayList<Revision> ();
 	}
 	
+	/**
+		Este método devuelve true si el usuario no es de la autoria del trabajo ni trabaja en el mismo lugar que su colega
+	 * @param user
+	 * @return
+	 */
+	public boolean evaluadorHabilitado(Usuario user) {
+		if(this.autores.contains(user)) return false;
+		for (int i = 0; i < this.autores.size(); i++) {
+			if(user.getLugarDeTrabajo()== this.autores.get(i).getLugarDeTrabajo() ) return false;
+		}
+		return true;
+	}
+	
+	public abstract boolean acreditaConocimientos(Usuario evaluador);
 	@Override
 	public String toString() {
 		return "Trabajo [id=" + id + ", nombre=" + nombre + ", autores=" + autores + ", revisiones=" + revisiones + "]";
@@ -48,34 +63,16 @@ public abstract class Trabajo {
 		this.temasConocimiento = temas;
 	}
 	
-	public String getTemasConocimiento(String temas) {
-		return this.temasConocimiento = temas;
+	public List<String> getTemasConocimiento() {
+		List <String> retorno= new ArrayList<String>(Arrays.asList(this.temasConocimiento.split(" ")));  
+		return retorno;
 	}
 
-	public abstract boolean aceptarEvaluador();
-////	este metodo lo vamos a implementar en cada clase
-//	
-//	public boolean acreditaConocimientos(Usuario evaluador) {
-//		int iter=0;
-//		if(this.palabrasClave.size()>evaluador.getTemasConocimiento().size()) {
-//			return false;
-//		}
-//		while(iter<this.palabrasClave.size()) {
-//			String tema= this.palabrasClave.get(iter);
-//			if(!evaluador.getTemasConocimiento().contains(tema)) {
-//				return false;
-//			}
-//			iter++;
-//		}
-//		return true;
-//	};
 	public void addAutor(Usuario autor) {
 		autores.add(autor);
 	
 	}	public void addReview(Revision review) {
 		this.revisiones.add(review);
 	}
-//	public void addAutores(List <Usuario> autores) {
-//		this.autores=new ArrayList<Usuario> (autores);
-//	}
+
 }
