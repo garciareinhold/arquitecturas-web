@@ -122,4 +122,8 @@ public class Usuario {
 		}
 		return false;
 	}
+	public List<Trabajo> getTrabajos() {
+		return trabajos;
+	}
+	
 	}
