@@ -3,7 +3,6 @@ package entrega.arquitectura.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,10 +30,10 @@ public class Usuario {
 	String lugarDeTrabajo;
 	@OneToMany(mappedBy="evaluador")
 	List <Revision>revision;
-	@ManyToMany(cascade= CascadeType.ALL)
+	@ManyToMany
 	List <Trabajo> trabajos;
-	@Column(nullable = true)
-	String temasConocimiento;
+//	
+//	List<String> temasConocimiento;
 	public Usuario() {
 		this.revision= new ArrayList<Revision>();
 		this.trabajos=new ArrayList<Trabajo>();
@@ -52,12 +51,6 @@ public class Usuario {
 //		this.revision= new ArrayList();
 //		this.trabajos=new ArrayList();
 //		this.temasConocimiento= new ArrayList();
-	}
-	@Override
-	public String toString() {
-		return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", esExperto=" + esExperto
-				+ ", esEvaluador=" + esEvaluador + ", lugarDeTrabajo=" + lugarDeTrabajo + ", revision=" + revision
-				+ ", trabajos=" + trabajos + ", temas de conocimiento="+ temasConocimiento +"]";
 	}
 	public int getDni() {
 		return dni;
@@ -95,19 +88,6 @@ public class Usuario {
 	public void setLugarDeTrabajo(String lugarDeTrabajo) {
 		this.lugarDeTrabajo = lugarDeTrabajo;
 	}
-	public void addRevision(Revision review) {
-		this.revision.add(review);
-	}
-	public void addTrabajos(Trabajo work) {
-		this.trabajos.add(work);
-	}
-	public String getTemasConocimiento() {
-		return temasConocimiento;
-	}
-	public void setTemasConocimiento(String temasConocimiento) {
-		this.temasConocimiento = temasConocimiento;
-	}
-	
 //	public List<Revision> getRevision() {
 //		return revision;
 //	}
