@@ -45,7 +45,12 @@ public abstract class Trabajo {
 		return true;
 	}
 	
-	public abstract boolean acreditaConocimientos(Usuario evaluador);
+	/**
+	 * controla si el trabajo y el evaluador son compatibles para aceptar la revision
+	 * @param evaluador
+	 * @return
+	 */
+	public abstract boolean aceptaRevision(Usuario evaluador);
 	@Override
 	public String toString() {
 		return "Trabajo [id=" + id + ", nombre=" + nombre + ", autores=" + autores + ", revisiones=" + revisiones + "]";

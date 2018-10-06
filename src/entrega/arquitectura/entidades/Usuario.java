@@ -105,25 +105,21 @@ public class Usuario {
 	public void setTemasConocimiento(String temasConocimiento) {
 		this.temasConocimiento = temasConocimiento;
 	}
-	
-//	public List<Revision> getRevision() {
-//		return revision;
-//	}
-//	public void setRevision(List<Revision> revision) {
-//		this.revision = revision;
-//	}
-//	public List<Trabajo> getTrabajos() {
-//		return trabajos;
-//	}
-//	public void setTrabajos(List<Trabajo> trabajos) {
-//		this.trabajos = trabajos;
-//	}
-//	public void setTemasConocimiento(List<String> temasConocimiento) {
-//		this.temasConocimiento = temasConocimiento;
-//	}
-
-
-//		public List<String> getTemasConocimiento() {
-//			return new ArrayList<String>(this.temasConocimiento);
-//		}
+	/**
+	 * Este metodo devuelve true si en las revisiones contiene mas de tres articulos 
+	 * @return 
+	 */
+	public boolean tengoMasDeTresArt() {
+		int count=0;
+		for (int i = 0; i < this.revision.size(); i++) {
+			Trabajo work=revision.get(i).getTrabajo();
+			if(work instanceof Articulo) {
+				count++;
+			}
+		}
+		if(count<3) {
+			return true;
+		}
+		return false;
+	}
 	}

@@ -10,14 +10,14 @@ public class Articulo extends Trabajo {
 
 
 	@Override
-	public boolean acreditaConocimientos(Usuario evaluador) {
+	public boolean aceptaRevision(Usuario evaluador) {
 		
 		
 		boolean retorno=true;
 		List<String> temasTrabajo= this.getTemasConocimiento();
 		List <String> temasEvaluador = evaluador.getTemasConocimiento();
-		
-		if(temasTrabajo.size()<=temasEvaluador.size()) {
+		//este if contiene las tres condiciones que son necesarias para contemplar si acredita o no los tema de conocimiento
+		if(temasTrabajo.size()<=temasEvaluador.size()&&(this.hayCupoRevision()&&(evaluador.tengoMasDeTresArt()))) {
 			
 			for (int i = 0; i < temasEvaluador.size(); i++) {
 				if(!this.temasConocimiento.contains(temasEvaluador.get(i))) retorno = false;
@@ -41,8 +41,6 @@ public class Articulo extends Trabajo {
 	public boolean hayCupoRevision() {
 		return (this.revisiones.size()<=2);
 	}
-
-
 
 
 }

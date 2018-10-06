@@ -42,7 +42,9 @@ public class SistemaCacic {
 		List<String> temasTrabajo= trabajo.getTemasConocimiento();
 		for (int i = 0; i < this.participantes.size(); i++) {
 			Usuario user= this.participantes.get(i);
-			if(trabajo.evaluadorHabilitado(user) && trabajo.acreditaConocimientos(user)) retorno.add(user);
+			if(trabajo.evaluadorHabilitado(user) && trabajo.aceptaRevision(user)) {
+				retorno.add(user);
+			}
 		}
 		return retorno;
 	}
