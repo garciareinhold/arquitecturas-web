@@ -8,30 +8,40 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.jboss.jandex.Main;
 
 import entrega.arquitectura.entidades.Revision;
 import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
+import entrega.arquitectura.servicios.TrabajoDAO;
+import entrega.arquitectura.servicios.UsuarioDAO;
 import entrega.arquitectura.servicios.servicioGeneral;
 
 public class SistemaCacic {
 
-	List <Usuario> participantes;
-	List <Trabajo> trabajosCongreso;
+	private static EntityManagerFactory emf;
+
 
 	public SistemaCacic() {
-		this.participantes= new ArrayList <Usuario>();
-		this.trabajosCongreso= new ArrayList <Trabajo>();
+//		this.participantes= new ArrayList <Usuario>();
+//		this.trabajosCongreso= new ArrayList <Trabajo>();
 	};
+	private void emfUP() {
+		emf=Persistence.createEntityManagerFactory("TpEspecialArqWeb");
+	}
 
 	public void addTrabajosCongreso(Trabajo trabajo) {
-		this.trabajosCongreso.add(trabajo);
+		emfUP();
+		EntityManager entityManager= emf.createEntityManager();
+		TrabajoDAO.getInstance().persist(trabajo, entityManager);
 	}
 
 	public void addParticipante(Usuario user) {
-		this.participantes.add(user);
+		emfUP();
+		EntityManager entityManager= emf.createEntityManager();
+		UsuarioDAO.getInstance().persist(user, entityManager);
 	}
 
 	public void asignarTrabajoEvaluador(int dni, Trabajo trabajo) {
@@ -53,8 +63,9 @@ public class SistemaCacic {
 	public List<Usuario> getEvaluadoresCalificados(Trabajo trabajo){
 		List<Usuario> retorno = new ArrayList<Usuario>();
 		List<String> temasTrabajo= trabajo.getTemasConocimiento();
-		for (int i = 0; i < this.participantes.size(); i++) {
-			Usuario user= this.participantes.get(i);
+		List<Usuario> participantes = getALLParticipantes();
+		for (int i = 0; i < participantes.size(); i++) {
+			Usuario user= participantes.get(i);
 			if(trabajo.evaluadorHabilitado(user) && trabajo.aceptaRevision(user)) {
 				retorno.add(user);
 			}
@@ -62,38 +73,45 @@ public class SistemaCacic {
 		return retorno;
 	}
 
-	public List<Trabajo> getTrabajosDisponiblesEvaluador(int dni){
-		List<Trabajo> retorno = new ArrayList<Trabajo>();
-		Usuario evaluador = null;
-		for (int i = 0; i < this.participantes.size(); i++) {
-			if(this.participantes.get(i).getDni()==dni) {
-				evaluador = this.participantes.get(i);
-				for (int x = 0; x < this.trabajosCongreso.size(); x++) {
-					Trabajo trabajo=trabajosCongreso.get(x);
-					if(trabajo.evaluadorHabilitado(evaluador) && trabajo.aceptaRevision(evaluador)) {
-						retorno.add(trabajo);
-					}
-				}
-			}
-		}
+	private List<Usuario> getALLParticipantes() {
+		List <Usuario>retorno;
+		emfUP();
+		EntityManager entityManager= emf.createEntityManager();
+		retorno=UsuarioDAO.getInstance().findAll(entityManager);
 		return retorno;
 	}
-
-	public List<Trabajo> getTrabajosAsignados(int dni){
-		for (int i = 0; i < this.participantes.size(); i++) {
-			if(this.participantes.get(i).getDni()==dni) {
-				return this.participantes.get(i).getTrabajos();
-			}
-		}
-		return null;
-	}
+//	public List<Trabajo> getTrabajosDisponiblesEvaluador(int dni){
+//		List<Trabajo> retorno = new ArrayList<Trabajo>();
+//		Usuario evaluador = null;
+//		for (int i = 0; i < this.participantes.size(); i++) {
+//			if(this.participantes.get(i).getDni()==dni) {
+//				evaluador = this.participantes.get(i);
+//				for (int x = 0; x < this.trabajosCongreso.size(); x++) {
+//					Trabajo trabajo=trabajosCongreso.get(x);
+//					if(trabajo.evaluadorHabilitado(evaluador) && trabajo.aceptaRevision(evaluador)) {
+//						retorno.add(trabajo);
+//					}
+//				}
+//			}
+//		}
+//		return retorno;
+//	}
+//
+//	public List<Trabajo> getTrabajosAsignados(int dni){
+//		for (int i = 0; i < this.participantes.size(); i++) {
+//			if(this.participantes.get(i).getDni()==dni) {
+//				return this.participantes.get(i).getTrabajos();
+//			}
+//		}
+//		return null;
+//	}
 
 	public boolean esExperto(int dni) {
-		for (int i = 0; i < this.participantes.size(); i++) {
-			if(this.participantes.get(i).getDni()==dni) {
-				return this.participantes.get(i).isEsExperto();
-			}
-		}
+//		for (int i = 0; i < this.participantes.size(); i++) {
+//			if(this.participantes.get(i).getDni()==dni) {
+//				return this.participantes.get(i).isEsExperto();
+//			}
+//		}
 		return false;
 	}
 

@@ -41,7 +41,11 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
 		return user;
 	}
 	public List<Usuario> findAll(EntityManager entityManager) {
-		throw new UnsupportedOperationException();
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createNativeQuery("SELECT * FROM usuario", Trabajo.class);
+		entityManager.getTransaction().commit();
+		List <Usuario>usuarios=query.getResultList();
+		return usuarios;
 	}
 
 	

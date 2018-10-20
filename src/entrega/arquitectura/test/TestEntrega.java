@@ -18,9 +18,11 @@ import entrega.arquitectura.entidades.Articulo;
 import entrega.arquitectura.entidades.Poster;
 import entrega.arquitectura.entidades.Resumen;
 import entrega.arquitectura.entidades.Revision;
+import entrega.arquitectura.entidades.Tema;
 import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
 import entrega.arquitectura.servicios.RevisionDAO;
+import entrega.arquitectura.servicios.TemaDAO;
 import entrega.arquitectura.servicios.TrabajoDAO;
 import entrega.arquitectura.servicios.UsuarioDAO;
 
@@ -41,85 +43,108 @@ public class TestEntrega {
 	@Test
 	public void altaUsuariosTrabajosRevisiones() {
 		EntityManager entityManager= emf.createEntityManager();
+		//////////////////////TEMAS
+		Tema tema = new Tema();
+		tema.setName("Java");
+		tema.setTemaExperto(true);
+		tema.setTemaGeneral(false);
+		Tema tema1 = new Tema();
+		tema1.setName("JavaScript");
+		tema1.setTemaExperto(true);
+		tema1.setTemaGeneral(false);
+		Tema tema2 = new Tema();
+		tema2.setName("Eclipse");
+		tema2.setTemaExperto(false);
+		tema2.setTemaGeneral(true);
+		Tema tema3 = new Tema();
+		tema3.setName("Python");
+		tema3.setTemaExperto(true);
+		tema3.setTemaGeneral(false);
+		Tema tema4 = new Tema();
+		tema4.setName("Atom");
+		tema4.setTemaExperto(false);
+		tema4.setTemaGeneral(true);
 		//////////////////////USUARIOS
 		Usuario user = new Usuario();
 		user.setDni(1);
 		user.setApellido("Guerra");
 		user.setNombre("Maximiliano");
-		user.setEsEvaluador(true);
-		user.setEsExperto(true);
+//		user.setEsEvaluador(true);
+//		user.setEsExperto(true);
+		user.addTemasConocimiento(tema);
+		user.addTemasConocimiento(tema1);
 		user.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user2 = new Usuario();
 		user2.setDni(2);
 		user2.setApellido("Guerra");
 		user2.setNombre("Morena");
-		user2.setEsEvaluador(true);
-		user2.setEsExperto(true);
+//		user2.setEsEvaluador(true);
+//		user2.setEsExperto(true);
 		user2.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user3 = new Usuario();
 		user3.setDni(3);
 		user3.setApellido("Guerra");
 		user3.setNombre("Maximiliano");
-		user3.setEsEvaluador(true);
-		user3.setEsExperto(true);
+//		user3.setEsEvaluador(true);
+//		user3.setEsExperto(true);
 		user3.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user4 = new Usuario();
 		user4.setDni(4);
 		user4.setApellido("G44erra");
 		user4.setNombre("Maxi555iliano");
-		user4.setEsEvaluador(true);
-		user4.setEsExperto(true);
+//		user4.setEsEvaluador(true);
+//		user4.setEsExperto(true);
 		user4.setLugarDeTrabajo("Mu444icipalidad De Tandil");
 
 		Usuario user5 = new Usuario();
 		user5.setDni(5);
 		user5.setApellido("Guerra");
 		user5.setNombre("Mdddddddaximiliano");
-		user5.setEsEvaluador(true);
-		user5.setEsExperto(true);
+//		user5.setEsEvaluador(true);
+//		user5.setEsExperto(true);
 		user5.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user6 = new Usuario();
 		user6.setDni(6);
 		user6.setApellido("Guerra");
 		user6.setNombre("Masddddddddddddximiliano");
-		user6.setEsEvaluador(true);
-		user6.setEsExperto(true);
+//		user6.setEsEvaluador(true);
+//		user6.setEsExperto(true);
 		user6.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user7 = new Usuario();
 		user7.setDni(7);
 		user7.setApellido("Guerra");
 		user7.setNombre("Madddddximiliano");
-		user7.setEsEvaluador(true);
-		user7.setEsExperto(true);
+//		user7.setEsEvaluador(true);
+//		user7.setEsExperto(true);
 		user7.setLugarDeTrabajo("Mdddunicipalidad De Tandil");
 
 		Usuario user8 = new Usuario();
 		user8.setDni(8);
 		user8.setApellido("Guerra");
 		user8.setNombre("Maximiliano");
-		user8.setEsEvaluador(true);
-		user8.setEsExperto(true);
+//		user8.setEsEvaluador(true);
+//		user8.setEsExperto(true);
 		user8.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user9 = new Usuario();
 		user9.setDni(9);
 		user9.setApellido("Guerra");
 		user9.setNombre("Maximiliano");
-		user9.setEsEvaluador(true);
-		user9.setEsExperto(true);
+//		user9.setEsEvaluador(true);
+//		user9.setEsExperto(true);
 		user9.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user10 = new Usuario();
 		user10.setDni(10);
 		user10.setApellido("Guerra");
 		user10.setNombre("Maximiliano");
-		user10.setEsEvaluador(true);
-		user10.setEsExperto(true);
+//		user10.setEsEvaluador(true);
+//		user10.setEsExperto(true);
 		user10.setLugarDeTrabajo("Municipalidad De Tandil");
 
 
@@ -289,6 +314,12 @@ public class TestEntrega {
 		TrabajoDAO.getInstance().persist(articulo2, entityManager);
 		TrabajoDAO.getInstance().persist(articulo3, entityManager);
 		TrabajoDAO.getInstance().persist(resume3, entityManager);
+		
+		TemaDAO.getInstance().persist(tema, entityManager);
+		TemaDAO.getInstance().persist(tema1, entityManager);
+		TemaDAO.getInstance().persist(tema2, entityManager);
+		TemaDAO.getInstance().persist(tema3, entityManager);
+		TemaDAO.getInstance().persist(tema4, entityManager);
 		entityManager.close();
 
 	}

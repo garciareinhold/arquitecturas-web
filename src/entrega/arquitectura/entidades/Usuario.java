@@ -24,10 +24,10 @@ public class Usuario {
 	String nombre;
 	@Column(nullable = false)
 	String apellido;
-	@Column(nullable = false)
-	boolean esExperto;
-	@Column(nullable = false)
-	boolean esEvaluador;
+//	@Column(nullable = false)
+//	boolean esExperto;
+//	@Column(nullable = false)
+//	boolean esEvaluador;
 	@Column(nullable = false)
 	String lugarDeTrabajo;
 	@OneToMany(mappedBy="evaluador")
@@ -35,10 +35,12 @@ public class Usuario {
 	@ManyToMany(cascade= CascadeType.ALL)
 	List <Trabajo> trabajos;
 	@Column(nullable = true)
-	String temasConocimiento;
+	@OneToMany(cascade= CascadeType.ALL)
+	List<Tema>temasConocimiento;
 	public Usuario() {
 		this.revision= new ArrayList<Revision>();
 		this.trabajos=new ArrayList<Trabajo>();
+		this.temasConocimiento=new ArrayList<Tema>();
 	}
 	public Usuario(String nombre, String apellido, int dni, boolean esExperto, boolean esEvaluador,
 			String lugarDeTrabajo) {
@@ -46,16 +48,16 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
-		this.esExperto = esExperto;
-		this.esEvaluador = esEvaluador;
+//		this.esExperto = esExperto;
+//		this.esEvaluador = esEvaluador;
 		this.lugarDeTrabajo = lugarDeTrabajo;
 	}
-	@Override
-	public String toString() {
-		return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", esExperto=" + esExperto
-				+ ", esEvaluador=" + esEvaluador + ", lugarDeTrabajo=" + lugarDeTrabajo + ", revision=" + revision
-				+ ", trabajos=" + trabajos + ", temas de conocimiento="+ temasConocimiento +"]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", esExperto=" + esExperto
+//				+ ", esEvaluador=" + esEvaluador + ", lugarDeTrabajo=" + lugarDeTrabajo + ", revision=" + revision
+//				+ ", trabajos=" + trabajos + ", temas de conocimiento="+ temasConocimiento +"]";
+//	}
 	public int getDni() {
 		return dni;
 	}
@@ -74,18 +76,18 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public boolean isEsExperto() {
-		return esExperto;
-	}
-	public void setEsExperto(boolean esExperto) {
-		this.esExperto = esExperto;
-	}
-	public boolean isEsEvaluador() {
-		return esEvaluador;
-	}
-	public void setEsEvaluador(boolean esEvaluador) {
-		this.esEvaluador = esEvaluador;
-	}
+//	public boolean isEsExperto() {
+//		return esExperto;
+//	}
+//	public void setEsExperto(boolean esExperto) {
+//		this.esExperto = esExperto;
+//	}
+//	public boolean isEsEvaluador() {
+//		return esEvaluador;
+//	}
+//	public void setEsEvaluador(boolean esEvaluador) {
+//		this.esEvaluador = esEvaluador;
+//	}
 	public String getLugarDeTrabajo() {
 		return lugarDeTrabajo;
 	}
@@ -98,12 +100,11 @@ public class Usuario {
 	public void addTrabajos(Trabajo work) {
 		this.trabajos.add(work);
 	}
-	public List<String> getTemasConocimiento() {
-		List <String> retorno= new ArrayList<String>(Arrays.asList(this.temasConocimiento.split(" ")));  
-		return retorno;
+	public List<Tema> getTemasConocimiento() {
+		return this.temasConocimiento;
 	}
-	public void setTemasConocimiento(String temasConocimiento) {
-		this.temasConocimiento = temasConocimiento;
+	public void addTemasConocimiento(Tema tema) {
+		this.temasConocimiento.add(tema);
 	}
 	/**
 	 * Este metodo devuelve true si en las revisiones contiene mas de tres articulos 
