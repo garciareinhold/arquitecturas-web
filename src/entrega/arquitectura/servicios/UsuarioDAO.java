@@ -42,7 +42,7 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
 	}
 	public List<Usuario> findAll(EntityManager entityManager) {
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createNativeQuery("SELECT * FROM usuario", Trabajo.class);
+		Query query = entityManager.createNativeQuery("SELECT * FROM usuario", Usuario.class);
 		entityManager.getTransaction().commit();
 		List <Usuario>usuarios=query.getResultList();
 		return usuarios;

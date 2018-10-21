@@ -43,7 +43,11 @@ public class TrabajoDAO implements DAO<Trabajo,Integer>{
 		return work;
 	}
 	public List<Trabajo> findAll(EntityManager entityManager) {
-		throw new UnsupportedOperationException();
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createNativeQuery("SELECT * FROM trabajo", Trabajo.class);
+		entityManager.getTransaction().commit();
+		List <Trabajo>trabajos=query.getResultList();
+		return trabajos;
 	}
 
 
