@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import org.jboss.jandex.Main;
 
 import entrega.arquitectura.entidades.Revision;
+import entrega.arquitectura.entidades.Tema;
 import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
 import entrega.arquitectura.servicios.TrabajoDAO;
@@ -65,7 +66,7 @@ public class SistemaCacic {
 
 	public List<Usuario> getEvaluadoresCalificados(Trabajo trabajo) {
 		List<Usuario> retorno = new ArrayList<Usuario>();
-		List<String> temasTrabajo = trabajo.getTemasConocimiento();
+		List<Tema> temasTrabajo = trabajo.getTemasConocimiento();
 		List<Usuario> participantes = getALLParticipantes();
 		for (int i = 0; i < participantes.size(); i++) {
 			Usuario user = participantes.get(i);

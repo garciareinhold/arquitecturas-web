@@ -1,6 +1,6 @@
 package entrega.arquitectura.test;
 
-import java.awt.List;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -150,11 +150,11 @@ public class TestEntrega {
 
 		/////////////////////TRABAJOS
 
-		Trabajo poster = new Poster();
-		poster.setNombre("Dinamica");
-		poster.addAutor(user);
-		user.addTrabajos(poster);
-		poster.setTemasConocimiento("dfsdf dsggg gsgsafg dgfg Redes dfsg fgdsdfg");
+//		Trabajo poster = new Poster();
+//		poster.setNombre("Dinamica");
+//		poster.addAutor(user);
+//		user.addTrabajos(poster);
+//		poster.setTemasConocimiento("dfsdf dsggg gsgsafg dgfg Redes dfsg fgdsdfg");
 
 		Trabajo articulo = new Articulo();
 		articulo.setNombre("Derivadas");
@@ -209,12 +209,12 @@ public class TestEntrega {
 		Calendar fechaRevision3 = new GregorianCalendar(2017,0,31);
 		Calendar fechaRevision4= new GregorianCalendar(2018,0,31);
 
-		Revision rev= new Revision();
-		rev.setEvaluador(user);
-		user.addRevision(rev);
-		rev.setTrabajo(poster);
-		poster.addReview(rev);
-		rev.setFechaRevision(fechaRevision1);
+//		Revision rev= new Revision();
+//		rev.setEvaluador(user);
+//		user.addRevision(rev);
+//		rev.setTrabajo(poster);
+//		poster.addReview(rev);
+//		rev.setFechaRevision(fechaRevision1);
 
 		Revision rev10= new Revision();
 		rev10.setEvaluador(user2);
@@ -264,13 +264,13 @@ public class TestEntrega {
 		rev7.setTrabajo(articulo2);
 		articulo2.addReview(rev7);
 		rev7.setFechaRevision(fechaRevision4);
-
-		Revision rev8= new Revision();
-		rev8.setEvaluador(user10);
-		user10.addRevision(rev8);
-		rev8.setTrabajo(poster);
-		poster.addReview(rev8);
-		rev8.setFechaRevision(fechaRevision1);
+//
+//		Revision rev8= new Revision();
+//		rev8.setEvaluador(user10);
+//		user10.addRevision(rev8);
+//		rev8.setTrabajo(poster);
+//		poster.addReview(rev8);
+//		rev8.setFechaRevision(fechaRevision1);
 
 		Revision rev9= new Revision();
 		rev9.setEvaluador(user10);
@@ -293,18 +293,18 @@ public class TestEntrega {
 		UsuarioDAO.getInstance().persist(user9,entityManager);
 		UsuarioDAO.getInstance().persist(user10,entityManager);
 
-		RevisionDAO.getInstance().persist(rev, entityManager);
+//		RevisionDAO.getInstance().persist(rev, entityManager);
 		RevisionDAO.getInstance().persist(rev2, entityManager);
 		RevisionDAO.getInstance().persist(rev3, entityManager);
 		RevisionDAO.getInstance().persist(rev4, entityManager);
 		RevisionDAO.getInstance().persist(rev5, entityManager);
 		RevisionDAO.getInstance().persist(rev6, entityManager);
 		RevisionDAO.getInstance().persist(rev7, entityManager);
-		RevisionDAO.getInstance().persist(rev8, entityManager);
+//		RevisionDAO.getInstance().persist(rev8, entityManager);
 		RevisionDAO.getInstance().persist(rev9, entityManager);
 		RevisionDAO.getInstance().persist(rev10, entityManager);
 
-		TrabajoDAO.getInstance().persist(poster, entityManager);
+//		TrabajoDAO.getInstance().persist(poster, entityManager);
 		TrabajoDAO.getInstance().persist(poster2, entityManager);
 		TrabajoDAO.getInstance().persist(poster3, entityManager);
 		TrabajoDAO.getInstance().persist(poster4, entityManager);
@@ -332,7 +332,7 @@ public class TestEntrega {
 	public void getDatosUsuario() {
 		EntityManager entityManager= emf.createEntityManager();
 		Usuario user2= UsuarioDAO.getInstance().findById(2, entityManager);
-		System.out.println(user2.getDni());
+		System.out.println("DNI: " + user2.getDni() + "Nombre: " + user2.getNombre());
 		entityManager.close();
 	}
 	
@@ -375,14 +375,21 @@ public class TestEntrega {
 	public void buscarTrabajosAutores() {
 		EntityManager entityManager= emf.createEntityManager();
 
-		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(UsuarioDAO.getInstance().findTrabajosAutores(10, entityManager));
+		List <Trabajo> trabajos = UsuarioDAO.getInstance().findTrabajosAutores(10, entityManager);
 		for (int i = 0; i < trabajos.size(); i++) {
 			System.out.println(trabajos.get(i).getNombre());
 		}
 		System.out.println("termina buscar Trabajps Autores");
 		entityManager.close();
 	}
-	
+
+	@Test
+	public void buscarTodosLosTrabajos() {
+		EntityManager entityManager= emf.createEntityManager();
+		
+		List <Trabajo> trabajos = TrabajoDAO.getInstance().findAll(entityManager);
+		
+	}
 	/**
 	 * Este método corresponde al inciso f.
 	 */

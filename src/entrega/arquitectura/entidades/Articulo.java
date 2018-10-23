@@ -11,7 +11,7 @@ public class Articulo extends Trabajo {
 	public boolean aceptaRevision(Usuario evaluador) {
 
 		boolean retorno = true;
-		List<String> temasTrabajo = this.getTemasConocimiento();
+		List<Tema> temasTrabajo = this.getTemasConocimiento();
 		List<Tema> temasEvaluador = evaluador.getTemasConocimiento();
 		// este if contiene las tres condiciones que son necesarias para contemplar si
 		// acredita o no los tema de conocimiento
