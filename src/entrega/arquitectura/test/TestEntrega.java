@@ -425,10 +425,10 @@ public class TestEntrega {
 	public void buscarTrabajoNombreTema() {
 		EntityManager entityManager= emf.createEntityManager();
 		
-//		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(TrabajoDAO.getInstance().findByUserTema(1, "Redes", entityManager));
-//		for (int i = 0; i < trabajos.size(); i++) {
-//			System.out.println(trabajos.get(i).getNombre() + "  Este trabajo pertenece a buscarTrabajoNombreTema!!!!!");
-//		}
+		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(TrabajoDAO.getInstance().findByUserTema("Eclipse", entityManager));
+		for (int i = 0; i < trabajos.size(); i++) {
+			System.out.println(trabajos.get(i).getNombre() + "  Este trabajo pertenece a buscarTrabajoNombreTema!!!!!");
+		}
 		entityManager.close();
 	}
 	
