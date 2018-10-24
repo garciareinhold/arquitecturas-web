@@ -24,10 +24,6 @@ public class Usuario {
 	String nombre;
 	@Column(nullable = false)
 	String apellido;
-//	@Column(nullable = false)
-//	boolean esExperto;
-//	@Column(nullable = false)
-//	boolean esEvaluador;
 	@Column(nullable = false)
 	String lugarDeTrabajo;
 	@OneToMany(mappedBy="evaluador")
@@ -37,6 +33,7 @@ public class Usuario {
 	@Column(nullable = true)
 	@OneToMany(cascade= CascadeType.ALL)
 	List<Tema>temasConocimiento;
+	
 	public Usuario() {
 		this.revision= new ArrayList<Revision>();
 		this.trabajos=new ArrayList<Trabajo>();
@@ -48,16 +45,9 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
-//		this.esExperto = esExperto;
-//		this.esEvaluador = esEvaluador;
 		this.lugarDeTrabajo = lugarDeTrabajo;
 	}
-//	@Override
-//	public String toString() {
-//		return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", esExperto=" + esExperto
-//				+ ", esEvaluador=" + esEvaluador + ", lugarDeTrabajo=" + lugarDeTrabajo + ", revision=" + revision
-//				+ ", trabajos=" + trabajos + ", temas de conocimiento="+ temasConocimiento +"]";
-//	}
+
 	public int getDni() {
 		return dni;
 	}
@@ -76,18 +66,7 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-//	public boolean isEsExperto() {
-//		return esExperto;
-//	}
-//	public void setEsExperto(boolean esExperto) {
-//		this.esExperto = esExperto;
-//	}
-//	public boolean isEsEvaluador() {
-//		return esEvaluador;
-//	}
-//	public void setEsEvaluador(boolean esEvaluador) {
-//		this.esEvaluador = esEvaluador;
-//	}
+
 	public String getLugarDeTrabajo() {
 		return lugarDeTrabajo;
 	}

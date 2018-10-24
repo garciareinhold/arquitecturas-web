@@ -20,7 +20,7 @@ public abstract class Trabajo {
 	@GeneratedValue
 	int id;
 	@Column(nullable = true)
-	@OneToMany
+	@OneToMany(cascade= CascadeType.ALL)
 	List<Tema> temasConocimiento;
 	@Column(nullable = false)
 	String nombre;
@@ -32,6 +32,7 @@ public abstract class Trabajo {
 	public Trabajo() {
 		this.autores = new ArrayList<Usuario>();
 		this.revisiones = new ArrayList<Revision>();
+		this.temasConocimiento= new ArrayList<Tema>();
 	}
 
 	/**

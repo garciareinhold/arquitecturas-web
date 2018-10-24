@@ -46,24 +46,23 @@ public class TestEntrega {
 		//////////////////////TEMAS
 		Tema tema = new Tema();
 		tema.setName("Java");
-		tema.setTemaExperto(true);
-		tema.setTemaGeneral(false);
+		tema.setEsGeneral(false);
 		Tema tema1 = new Tema();
 		tema1.setName("JavaScript");
-		tema1.setTemaExperto(true);
-		tema1.setTemaGeneral(false);
+		tema.setEsGeneral(false);
+
 		Tema tema2 = new Tema();
 		tema2.setName("Eclipse");
-		tema2.setTemaExperto(false);
-		tema2.setTemaGeneral(true);
+		tema.setEsGeneral(false);
+
 		Tema tema3 = new Tema();
 		tema3.setName("Python");
-		tema3.setTemaExperto(true);
-		tema3.setTemaGeneral(false);
+		tema.setEsGeneral(false);
+
 		Tema tema4 = new Tema();
 		tema4.setName("Atom");
-		tema4.setTemaExperto(false);
-		tema4.setTemaGeneral(true);
+		tema.setEsGeneral(false);
+
 		//////////////////////USUARIOS
 		Usuario user = new Usuario();
 		user.setDni(1);
@@ -195,11 +194,18 @@ public class TestEntrega {
 		resume3.setNombre("HTML5");
 		resume3.addAutor(user8);
 		user8.addTrabajos(resume3);
+		resume3.addTemasConocimiento(tema2);
+		resume3.addTemasConocimiento(tema1);
+
 
 		Trabajo poster4 = new Poster();
 		poster4.setNombre("JAVA");
 		poster4.addAutor(user9);
 		user9.addTrabajos(poster4);
+		poster4.addTemasConocimiento(tema4);
+		poster4.addTemasConocimiento(tema3);
+		
+
 
 
 		//////////////REVISIONES
@@ -292,6 +298,12 @@ public class TestEntrega {
 		UsuarioDAO.getInstance().persist(user8,entityManager);
 		UsuarioDAO.getInstance().persist(user9,entityManager);
 		UsuarioDAO.getInstance().persist(user10,entityManager);
+		
+		TemaDAO.getInstance().persist(tema, entityManager);
+		TemaDAO.getInstance().persist(tema1, entityManager);
+		TemaDAO.getInstance().persist(tema2, entityManager);
+		TemaDAO.getInstance().persist(tema3, entityManager);
+		TemaDAO.getInstance().persist(tema4, entityManager);
 
 //		RevisionDAO.getInstance().persist(rev, entityManager);
 		RevisionDAO.getInstance().persist(rev2, entityManager);
@@ -315,11 +327,7 @@ public class TestEntrega {
 		TrabajoDAO.getInstance().persist(articulo3, entityManager);
 		TrabajoDAO.getInstance().persist(resume3, entityManager);
 		
-		TemaDAO.getInstance().persist(tema, entityManager);
-		TemaDAO.getInstance().persist(tema1, entityManager);
-		TemaDAO.getInstance().persist(tema2, entityManager);
-		TemaDAO.getInstance().persist(tema3, entityManager);
-		TemaDAO.getInstance().persist(tema4, entityManager);
+		
 		entityManager.close();
 
 	}
@@ -416,10 +424,11 @@ public class TestEntrega {
 	@Test
 	public void buscarTrabajoNombreTema() {
 		EntityManager entityManager= emf.createEntityManager();
-		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(TrabajoDAO.getInstance().findByUserTema(1, "Redes", entityManager));
-		for (int i = 0; i < trabajos.size(); i++) {
-			System.out.println(trabajos.get(i).getNombre() + "  Este trabajo pertenece a buscarTrabajoNombreTema!!!!!");
-		}
+		
+//		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(TrabajoDAO.getInstance().findByUserTema(1, "Redes", entityManager));
+//		for (int i = 0; i < trabajos.size(); i++) {
+//			System.out.println(trabajos.get(i).getNombre() + "  Este trabajo pertenece a buscarTrabajoNombreTema!!!!!");
+//		}
 		entityManager.close();
 	}
 	

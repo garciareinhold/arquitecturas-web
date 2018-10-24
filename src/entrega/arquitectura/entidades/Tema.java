@@ -12,27 +12,23 @@ public class Tema {
 	@Column(nullable = false)
 	private String name;
 	@Column(nullable = false)
-	private boolean temaExperto;
-	@Column(nullable = false)
-	private boolean temaGeneral;
+	private boolean esGeneral;
+
+	
 	public Tema() {}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isTemaExperto() {
-		return temaExperto;
-	}
-	public void setTemaExperto(boolean temaExperto) {
-		this.temaExperto = temaExperto;
-	}
+
 	public boolean isTemaGeneral() {
-		return temaGeneral;
+		return esGeneral;
 	}
-	public void setTemaGeneral(boolean temaGeneral) {
-		this.temaGeneral = temaGeneral;
+	public void setEsGeneral(boolean temaGeneral) {
+		this.esGeneral = temaGeneral;
 	}
 
 }

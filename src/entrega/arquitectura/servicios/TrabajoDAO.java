@@ -63,13 +63,13 @@ public class TrabajoDAO implements DAO<Trabajo,Integer>{
 		return null;
 	}
 
-	public List<Trabajo> findByUserTema(int id, String campo, EntityManager entityManager) {
-		entityManager.getTransaction().begin();
-		Query query = entityManager.createNativeQuery("SELECT t.* FROM trabajo t JOIN usuario_trabajo u on(u.trabajos_id= t.id) WHERE (autores_dni= :userId) AND (t.temasConocimiento LIKE :tema)", Trabajo.class);
-		query.setParameter("userId", id);
-		query.setParameter("tema", "%" + campo + "%");
-		entityManager.getTransaction().commit();
-		List <Trabajo>trabajos=query.getResultList();
-		return trabajos;
-	}
+//	public List<Trabajo> findByUserTema(int id, String campo, EntityManager entityManager) {
+//		entityManager.getTransaction().begin();
+//		Query query = entityManager.createNativeQuery("SELECT t.* FROM trabajo t JOIN usuario_trabajo u on(u.trabajos_id= t.id) WHERE (autores_dni= :userId) AND (t.temasConocimiento LIKE :tema)", Trabajo.class);
+//		query.setParameter("userId", id);
+//		query.setParameter("tema", "%" + campo + "%");
+//		entityManager.getTransaction().commit();
+//		List <Trabajo>trabajos=query.getResultList();
+//		return trabajos;
+//	}
 }
