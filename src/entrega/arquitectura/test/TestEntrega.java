@@ -326,8 +326,7 @@ public class TestEntrega {
 		TrabajoDAO.getInstance().persist(articulo2, entityManager);
 		TrabajoDAO.getInstance().persist(articulo3, entityManager);
 		TrabajoDAO.getInstance().persist(resume3, entityManager);
-		
-		
+	
 		entityManager.close();
 
 	}
@@ -356,7 +355,6 @@ public class TestEntrega {
 		}
 		System.out.println("termina buscar trabajo");
 		entityManager.close();
-
 	}
 	
 	/**
