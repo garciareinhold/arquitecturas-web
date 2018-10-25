@@ -11,6 +11,7 @@ import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,6 +35,11 @@ public class TestEntrega {
 	private static EntityManagerFactory emf;
 	@AfterClass
 	public static void closeFactory() {
+		EntityManager entityManager= emf.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.createNativeQuery("DROP DATABASE TpEspecialArqWeb").executeUpdate();
+		entityManager.getTransaction().commit();
+		entityManager.close();
 		emf.close();
 	}
 	@BeforeClass
