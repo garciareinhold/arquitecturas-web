@@ -31,7 +31,6 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
 	public Usuario findById(Integer id, EntityManager entityManager) {
 		Usuario user=entityManager.find(Usuario.class, id);
 		return user;
-	
 	}
 	public Usuario persist(Usuario user,EntityManager entityManager) {
 		entityManager.getTransaction().begin();

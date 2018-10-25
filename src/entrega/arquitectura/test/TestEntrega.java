@@ -1,6 +1,9 @@
 package entrega.arquitectura.test;
 
 import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,6 +24,7 @@ import entrega.arquitectura.entidades.Revision;
 import entrega.arquitectura.entidades.Tema;
 import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
+import entrega.arquitectura.main.SistemaCacic;
 import entrega.arquitectura.servicios.RevisionDAO;
 import entrega.arquitectura.servicios.TemaDAO;
 import entrega.arquitectura.servicios.TrabajoDAO;
@@ -84,64 +88,64 @@ public class TestEntrega {
 
 		Usuario user3 = new Usuario();
 		user3.setDni(3);
-		user3.setApellido("Guerra");
-		user3.setNombre("Maximiliano");
+		user3.setApellido("Lopez");
+		user3.setNombre("Feliciano");
 //		user3.setEsEvaluador(true);
 //		user3.setEsExperto(true);
 		user3.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user4 = new Usuario();
 		user4.setDni(4);
-		user4.setApellido("G44erra");
-		user4.setNombre("Maxi555iliano");
+		user4.setApellido("Del Potro");
+		user4.setNombre("Juan Martin");
 //		user4.setEsEvaluador(true);
 //		user4.setEsExperto(true);
 		user4.setLugarDeTrabajo("Mu444icipalidad De Tandil");
 
 		Usuario user5 = new Usuario();
 		user5.setDni(5);
-		user5.setApellido("Guerra");
-		user5.setNombre("Mdddddddaximiliano");
+		user5.setApellido("Federer");
+		user5.setNombre("Roger");
 //		user5.setEsEvaluador(true);
 //		user5.setEsExperto(true);
 		user5.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user6 = new Usuario();
 		user6.setDni(6);
-		user6.setApellido("Guerra");
-		user6.setNombre("Masddddddddddddximiliano");
+		user6.setApellido("Nadal");
+		user6.setNombre("Rafael");
 //		user6.setEsEvaluador(true);
 //		user6.setEsExperto(true);
 		user6.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user7 = new Usuario();
 		user7.setDni(7);
-		user7.setApellido("Guerra");
-		user7.setNombre("Madddddximiliano");
+		user7.setApellido("Murray");
+		user7.setNombre("Andy");
 //		user7.setEsEvaluador(true);
 //		user7.setEsExperto(true);
 		user7.setLugarDeTrabajo("Mdddunicipalidad De Tandil");
 
 		Usuario user8 = new Usuario();
 		user8.setDni(8);
-		user8.setApellido("Guerra");
-		user8.setNombre("Maximiliano");
+		user8.setApellido("Cilic");
+		user8.setNombre("Marin");
 //		user8.setEsEvaluador(true);
 //		user8.setEsExperto(true);
 		user8.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user9 = new Usuario();
 		user9.setDni(9);
-		user9.setApellido("Guerra");
-		user9.setNombre("Maximiliano");
+		user9.setApellido("Isner");
+		user9.setNombre("John");
 //		user9.setEsEvaluador(true);
 //		user9.setEsExperto(true);
 		user9.setLugarDeTrabajo("Municipalidad De Tandil");
 
 		Usuario user10 = new Usuario();
 		user10.setDni(10);
-		user10.setApellido("Guerra");
-		user10.setNombre("Maximiliano");
+		user10.setApellido("Thiem");
+		user10.setNombre("Dominic");
 //		user10.setEsEvaluador(true);
 //		user10.setEsExperto(true);
 		user10.setLugarDeTrabajo("Municipalidad De Tandil");
@@ -338,8 +342,9 @@ public class TestEntrega {
 	@Test
 	public void getDatosUsuario() {
 		EntityManager entityManager= emf.createEntityManager();
-		Usuario user2= UsuarioDAO.getInstance().findById(2, entityManager);
-		System.out.println("DNI: " + user2.getDni() + "Nombre: " + user2.getNombre());
+		Usuario user=SistemaCacic.getDatosUsuario(2, entityManager);
+		assertTrue(user.getNombre().equals("Morena"));
+		assertTrue(user.getApellido().equals("Guerra"));
 		entityManager.close();
 	}
 	
@@ -349,11 +354,8 @@ public class TestEntrega {
 	@Test
 	public void BuscarTrabajosAsignados() {
 		EntityManager entityManager= emf.createEntityManager();
-		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(UsuarioDAO.getInstance().findTrabajos(10, entityManager));
-		for (int i = 0; i < trabajos.size(); i++) {
-			System.out.println(trabajos.get(i).getNombre());
-		}
-		System.out.println("termina buscar trabajo");
+		List<Trabajo>trabajos=SistemaCacic.BuscarTrabajosAsignados(10, entityManager);
+		assertTrue(trabajos.size()==1);
 		entityManager.close();
 	}
 	
@@ -365,13 +367,9 @@ public class TestEntrega {
 		EntityManager entityManager= emf.createEntityManager();
 		Calendar desde = new GregorianCalendar(2011,0,31);
 		Calendar hasta = new GregorianCalendar(2013,0,31);
-		ArrayList <Revision> trabajos = new ArrayList <Revision>(UsuarioDAO.getInstance().findRevisiones(10,desde,hasta, entityManager));
-		for (int i = 0; i < trabajos.size(); i++) {
-			System.out.println(trabajos.get(i).getId());
-		}
-		System.out.println("termina buscar Revisiones");
+		List <Revision> revisiones = SistemaCacic.buscarRevisiones(10, desde, hasta, entityManager);
+		assertTrue(revisiones.size()==1);
 		entityManager.close();
-
 	}
 	
 	/**
@@ -380,12 +378,8 @@ public class TestEntrega {
 	@Test
 	public void buscarTrabajosAutores() {
 		EntityManager entityManager= emf.createEntityManager();
-
-		List <Trabajo> trabajos = UsuarioDAO.getInstance().findTrabajosAutores(10, entityManager);
-		for (int i = 0; i < trabajos.size(); i++) {
-			System.out.println(trabajos.get(i).getNombre());
-		}
-		System.out.println("termina buscar Trabajps Autores");
+		List <Trabajo> trabajos = SistemaCacic.buscarTrabajosAutores(10, entityManager);
+		assertTrue(trabajos.size()==1);
 		entityManager.close();
 	}
 
@@ -403,7 +397,7 @@ public class TestEntrega {
 	public void buscarTrabajoByID() {
 		EntityManager entityManager= emf.createEntityManager();
 		Trabajo work = TrabajoDAO.getInstance().findById(7, entityManager);
-		System.out.println(work.getNombre());
+		assertTrue(work.getNombre().equals("JAVA"));
 	}
 	
 	/**
@@ -412,8 +406,8 @@ public class TestEntrega {
 	@Test
 	public void buscarTrabajoByNombre() {
 		EntityManager entityManager= emf.createEntityManager();
-		Trabajo work = TrabajoDAO.getInstance().findByNombre("JavaScript", entityManager);
-		System.out.println(work.getNombre());
+		Trabajo work = SistemaCacic.buscarTrabajoByNombre("JavaScript", entityManager);
+		assertTrue(work.getNombre().equals("JavaScript"));
 	}
 	
 	/**
@@ -422,11 +416,8 @@ public class TestEntrega {
 	@Test
 	public void buscarTrabajoNombreTema() {
 		EntityManager entityManager= emf.createEntityManager();
-		
-		ArrayList <Trabajo> trabajos = new ArrayList <Trabajo>(TrabajoDAO.getInstance().findByUserTema("Eclipse", entityManager));
-		for (int i = 0; i < trabajos.size(); i++) {
-			System.out.println(trabajos.get(i).getNombre() + "  Este trabajo pertenece a buscarTrabajoNombreTema!!!!!");
-		}
+		List <Trabajo> trabajos = SistemaCacic.buscarTrabajoNombreTema("Eclipse", entityManager);
+		assertTrue(trabajos.size()==1);
 		entityManager.close();
 	}
 	
