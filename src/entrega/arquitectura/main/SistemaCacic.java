@@ -18,7 +18,6 @@ import entrega.arquitectura.entidades.Trabajo;
 import entrega.arquitectura.entidades.Usuario;
 import entrega.arquitectura.servicios.TrabajoDAO;
 import entrega.arquitectura.servicios.UsuarioDAO;
-import entrega.arquitectura.servicios.servicioGeneral;
 
 public class SistemaCacic {
 

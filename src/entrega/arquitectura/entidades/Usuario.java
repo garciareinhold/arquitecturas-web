@@ -30,6 +30,8 @@ public class Usuario {
 	List <Revision>revision;
 	@ManyToMany(cascade= CascadeType.ALL)
 	List <Trabajo> trabajos;
+	@Column(nullable = false)
+	boolean esExperto;
 	@Column(nullable = true)
 	@OneToMany(cascade= CascadeType.ALL)
 	List<Tema>temasConocimiento;
@@ -38,6 +40,7 @@ public class Usuario {
 		this.revision= new ArrayList<Revision>();
 		this.trabajos=new ArrayList<Trabajo>();
 		this.temasConocimiento=new ArrayList<Tema>();
+		this.esExperto=false;
 	}
 	public Usuario(String nombre, String apellido, int dni, boolean esExperto, boolean esEvaluador,
 			String lugarDeTrabajo) {
@@ -46,8 +49,13 @@ public class Usuario {
 		this.apellido = apellido;
 		this.dni = dni;
 		this.lugarDeTrabajo = lugarDeTrabajo;
+		this.esExperto=false;
 	}
-
+	
+	public boolean esExperto() {
+		return this.esExperto;
+	}
+	
 	public int getDni() {
 		return dni;
 	}
@@ -84,6 +92,9 @@ public class Usuario {
 	}
 	public void addTemasConocimiento(Tema tema) {
 		this.temasConocimiento.add(tema);
+		if(this.esExperto==false && tema.isTemaGeneral()==false) {
+			this.esExperto=true;
+		}
 	}
 	/**
 	 * Este metodo devuelve true si en las revisiones contiene mas de tres articulos 
