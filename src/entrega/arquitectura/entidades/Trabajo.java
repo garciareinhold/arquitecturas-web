@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 
-public abstract class Trabajo {
+public  class Trabajo {
 	@Id
 	@GeneratedValue
 	int id;
@@ -59,7 +59,33 @@ public abstract class Trabajo {
 	 * @param evaluador
 	 * @return
 	 */
-	public abstract boolean aceptaRevision(Usuario evaluador);
+	public  boolean aceptaRevision(Usuario evaluador) {
+		boolean retorno = true;
+		List<Tema> temasTrabajo = this.getTemasConocimiento();
+		List<Tema> temasEvaluador = evaluador.getTemasConocimiento();
+
+		if (temasTrabajo.size() <= temasEvaluador.size()
+				&& (this.hayCupoRevision() && (evaluador.hayCupoTrabajo()))) {
+
+			for (int i = 0; i < temasEvaluador.size(); i++) {
+				if (!this.temasConocimiento.contains(temasEvaluador.get(i).getName()))
+					retorno = false;
+			}
+
+		}
+
+		else {
+
+			retorno = false;
+
+		}
+
+		return retorno;
+	};
+
+	protected boolean hayCupoRevision() {
+		return (this.revisiones.size()<3);
+	}
 
 	@Override
 	public String toString() {

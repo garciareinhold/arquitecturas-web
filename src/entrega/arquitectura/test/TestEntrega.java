@@ -18,9 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import entrega.arquitectura.entidades.Articulo;
 import entrega.arquitectura.entidades.Poster;
-import entrega.arquitectura.entidades.Resumen;
 import entrega.arquitectura.entidades.Revision;
 import entrega.arquitectura.entidades.Tema;
 import entrega.arquitectura.entidades.Trabajo;
@@ -146,12 +144,12 @@ public class TestEntrega {
 		// user.addTrabajos(poster);
 		// poster.setTemasConocimiento("dfsdf dsggg gsgsafg dgfg Redes dfsg fgdsdfg");
 
-		Trabajo articulo = new Articulo();
+		Trabajo articulo = new Trabajo();
 		articulo.setNombre("Derivadas");
 		articulo.addAutor(user2);
 		user2.addTrabajos(articulo);
 
-		Trabajo resume = new Resumen();
+		Trabajo resume = new Trabajo();
 		resume.setNombre("Fisica");
 		resume.addAutor(user3);
 		user3.addTrabajos(resume);
@@ -161,12 +159,12 @@ public class TestEntrega {
 		poster2.addAutor(user4);
 		user4.addTrabajos(poster2);
 
-		Trabajo articulo2 = new Articulo();
+		Trabajo articulo2 = new Trabajo();
 		articulo2.setNombre("JAVA");
 		articulo2.addAutor(user5);
 		user5.addTrabajos(articulo2);
 
-		Trabajo resume2 = new Resumen();
+		Trabajo resume2 = new Trabajo();
 		resume2.setNombre("JAVA");
 		resume2.addAutor(user6);
 		user6.addTrabajos(resume2);
@@ -176,12 +174,12 @@ public class TestEntrega {
 		poster3.addAutor(user10);
 		user10.addTrabajos(poster3);
 
-		Trabajo articulo3 = new Articulo();
+		Trabajo articulo3 = new Trabajo();
 		articulo3.setNombre("JavaScript");
 		articulo3.addAutor(user7);
 		user7.addTrabajos(articulo3);
 
-		Trabajo resume3 = new Resumen();
+		Trabajo resume3 = new Trabajo();
 		resume3.setNombre("HTML5");
 		resume3.addAutor(user8);
 		user8.addTrabajos(resume3);

@@ -100,18 +100,8 @@ public class Usuario {
 	 * Este metodo devuelve true si en las revisiones contiene mas de tres articulos 
 	 * @return 
 	 */
-	public boolean tengoMasDeTresArt() {
-		int count=0;
-		for (int i = 0; i < this.revision.size(); i++) {
-			Trabajo work=revision.get(i).getTrabajo();
-			if(work instanceof Articulo) {
-				count++;
-			}
-		}
-		if(count<3) {
-			return true;
-		}
-		return false;
+	public boolean hayCupoTrabajo() {
+		return (this.revision.size()<3);
 	}
 	public List<Trabajo> getTrabajos() {
 		return trabajos;
