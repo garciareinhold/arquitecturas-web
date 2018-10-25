@@ -24,10 +24,7 @@ public class SistemaCacic {
 
 	private static EntityManagerFactory emf;
 
-	public SistemaCacic() {
-		// this.participantes= new ArrayList <Usuario>();
-		// this.trabajosCongreso= new ArrayList <Trabajo>();
-	};
+	public SistemaCacic() {};
 
 	private void emfUP() {
 		emf = Persistence.createEntityManagerFactory("TpEspecialArqWeb");
@@ -41,12 +38,14 @@ public class SistemaCacic {
 		emfUP();
 		EntityManager entityManager = emf.createEntityManager();
 		TrabajoDAO.getInstance().persist(trabajo, entityManager);
+		emfDown();
 	}
 
 	public void addParticipante(Usuario user) {
 		emfUP();
 		EntityManager entityManager = emf.createEntityManager();
 		UsuarioDAO.getInstance().persist(user, entityManager);
+		emfDown();
 	}
 
 	public void asignarTrabajoEvaluador(int dni, Trabajo trabajo) {
@@ -83,6 +82,7 @@ public class SistemaCacic {
 		emfUP();
 		EntityManager entityManager = emf.createEntityManager();
 		retorno = UsuarioDAO.getInstance().findAll(entityManager);
+		emfDown();
 		return retorno;
 	}
 
@@ -110,6 +110,7 @@ public class SistemaCacic {
 		emfUP();
 		EntityManager entityManager = emf.createEntityManager();
 		retorno = TrabajoDAO.getInstance().findAll(entityManager);
+		emfDown();
 		return retorno;
 	}
 
