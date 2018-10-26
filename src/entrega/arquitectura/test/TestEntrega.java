@@ -31,7 +31,7 @@ import entrega.arquitectura.servicios.UsuarioDAO;
 
 public class TestEntrega {
 	private static EntityManagerFactory emf;
-	
+
 	/**
 	 * Before Class
 	 * Se crea el entity manager factory
@@ -405,19 +405,19 @@ public class TestEntrega {
 		assertTrue(trabajos.size() == 1);
 		entityManager.close();
 	}
-	
-	
+
+
 	/**
-	 * After Class
+	 * After Class - Inciso G
 	 * Una vez ejecutada toda la prueba se borra la database y se cierra el entity manager factory
 	 */
 	@AfterClass
 	public static void closeFactory() {
-		 EntityManager entityManager= emf.createEntityManager();
-		 entityManager.getTransaction().begin();
-		 entityManager.createNativeQuery("DROP DATABASE TpEspecialArqWeb").executeUpdate();
-		 entityManager.getTransaction().commit();
-		 entityManager.close();
+		EntityManager entityManager= emf.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.createNativeQuery("DROP DATABASE TpEspecialArqWeb").executeUpdate();
+		entityManager.getTransaction().commit();
+		entityManager.close();
 		emf.close();
 	}
 
