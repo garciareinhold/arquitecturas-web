@@ -4,6 +4,7 @@
 
 ***Integrantes:***  
 
-  Cabrera Gentile, Carlos
-  Guerra, Maximiliano Daniel
-  García Reinhold, Arturo
+  Cabrera Gentile, Carlos.  
+  García Reinhold, Arturo.  
+  Guerra, Maximiliano Daniel.
+  
