@@ -34,12 +34,11 @@ public class TestEntrega {
 
 	@AfterClass
 	public static void closeFactory() {
-		// EntityManager entityManager= emf.createEntityManager();
-		// entityManager.getTransaction().begin();
-		// entityManager.createNativeQuery("DROP DATABASE
-		// TpEspecialArqWeb").executeUpdate();
-		// entityManager.getTransaction().commit();
-		// entityManager.close();
+		 EntityManager entityManager= emf.createEntityManager();
+		 entityManager.getTransaction().begin();
+		 entityManager.createNativeQuery("DROP DATABASE TpEspecialArqWeb").executeUpdate();
+		 entityManager.getTransaction().commit();
+		 entityManager.close();
 		emf.close();
 	}
 
@@ -300,7 +299,7 @@ public class TestEntrega {
 		RevisionDAO.getInstance().persist(rev9, entityManager);
 		RevisionDAO.getInstance().persist(rev10, entityManager);
 
-		// TrabajoDAO.getInstance().persist(poster, entityManager);
+		TrabajoDAO.getInstance().persist(poster, entityManager);
 		TrabajoDAO.getInstance().persist(poster2, entityManager);
 		TrabajoDAO.getInstance().persist(poster3, entityManager);
 		TrabajoDAO.getInstance().persist(poster4, entityManager);
