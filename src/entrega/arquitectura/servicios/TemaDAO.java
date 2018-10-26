@@ -7,15 +7,18 @@ import javax.persistence.EntityManager;
 import entrega.arquitectura.entidades.Tema;
 import entrega.arquitectura.entidades.Usuario;
 
-
-public class TemaDAO implements DAO<Tema,Integer>{
+public class TemaDAO implements DAO<Tema, Integer> {
 	private static TemaDAO daoTema;
-	public TemaDAO() {}
+
+	public TemaDAO() {
+	}
+
 	public static TemaDAO getInstance() {
-		if(daoTema==null) {
-			daoTema=new TemaDAO();;
+		if (daoTema == null) {
+			daoTema = new TemaDAO();
+			;
 		}
-		
+
 		return daoTema;
 	}
 
@@ -48,16 +51,15 @@ public class TemaDAO implements DAO<Tema,Integer>{
 
 	@Override
 	public boolean delete(Integer id, EntityManager entityManager) {
-		Tema tema= this.findById(id, entityManager);
-		if(tema!=null) {
+		Tema tema = this.findById(id, entityManager);
+		if (tema != null) {
 			entityManager.getTransaction().begin();
 			entityManager.remove(tema);
 			entityManager.getTransaction().commit();
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 }

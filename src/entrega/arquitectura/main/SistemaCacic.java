@@ -23,7 +23,8 @@ public class SistemaCacic {
 
 	private static EntityManagerFactory emf;
 
-	public SistemaCacic() {};
+	public SistemaCacic() {
+	};
 
 	private void emfUP() {
 		emf = Persistence.createEntityManagerFactory("TpEspecialArqWeb");
@@ -124,12 +125,14 @@ public class SistemaCacic {
 	}
 
 	public boolean esExperto(int dni) {
-		// for (int i = 0; i < this.participantes.size(); i++) {
-		// if(this.participantes.get(i).getDni()==dni) {
-		// return this.participantes.get(i).isEsExperto();
-		// }
-		// }
-		return false;
+		List<Usuario> participantes = getALLParticipantes();
+		boolean experto = false;
+		for (int i = 0; i < participantes.size(); i++) {
+			if (participantes.get(i).getDni() == dni) {
+				experto = participantes.get(i).esExperto();
+			}
+		}
+		return experto;
 	}
 
 	public static Usuario getDatosUsuario(int dni, EntityManager entityManager) {
@@ -162,8 +165,9 @@ public class SistemaCacic {
 		Trabajo work = TrabajoDAO.getInstance().findByNombre(nombre, entityManager);
 		return work;
 	}
-	public static List <Trabajo> buscarTrabajoNombreTema(String tema,EntityManager entityManager) {
-		List <Trabajo> trabajos = TrabajoDAO.getInstance().findByUserTema(tema, entityManager);
+
+	public static List<Trabajo> buscarTrabajoNombreTema(String tema, EntityManager entityManager) {
+		List<Trabajo> trabajos = TrabajoDAO.getInstance().findByUserTema(tema, entityManager);
 		return trabajos;
 	}
 

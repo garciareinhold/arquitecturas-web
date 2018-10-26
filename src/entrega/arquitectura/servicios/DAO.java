@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 
 public interface DAO<E, ID extends Serializable> {
 
-	
+
 	/**
 	 * Persist an entity.
 	 *
@@ -47,5 +47,5 @@ public interface DAO<E, ID extends Serializable> {
 	 * @return true, if deleted. false, if entity id does not exist
 	 */
 	public boolean delete(ID id, EntityManager entityManager);
-	
+
 }
