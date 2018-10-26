@@ -49,7 +49,6 @@ public class SistemaCacic {
 	}
 
 	public void asignarTrabajoEvaluador(int dni, Trabajo trabajo) {
-		// asigna el trabajo a un evaluador
 		List<Usuario> evaluadores = this.getEvaluadoresCalificados(trabajo);
 		for (int i = 0; i < evaluadores.size(); i++) {
 			if (evaluadores.get(i).getDni() == dni) {

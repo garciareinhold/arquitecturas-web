@@ -31,24 +31,23 @@ import entrega.arquitectura.servicios.UsuarioDAO;
 
 public class TestEntrega {
 	private static EntityManagerFactory emf;
-
-	@AfterClass
-	public static void closeFactory() {
-		 EntityManager entityManager= emf.createEntityManager();
-		 entityManager.getTransaction().begin();
-		 entityManager.createNativeQuery("DROP DATABASE TpEspecialArqWeb").executeUpdate();
-		 entityManager.getTransaction().commit();
-		 entityManager.close();
-		emf.close();
-	}
-
+	
+	/**
+	 * Before Class
+	 * Se crea el entity manager factory
+	 */
 	@BeforeClass
 	public static void setEntityManeger() {
 		emf = Persistence.createEntityManagerFactory("TpEspecialArqWeb");
 	}
 
 	/**
-	 * Metodo que corresponde al inciso a, b y c.
+	 * Test - Inciso A, B, C
+	 * Se crean y persisten:
+	 * 	10 Temas
+	 * 	10 Usuarios
+	 * 	10 Trabajos
+	 * 	10 Revisiones
 	 */
 	@Test
 	public void altaUsuariosTrabajosRevisiones() {
@@ -315,7 +314,8 @@ public class TestEntrega {
 	}
 
 	/**
-	 * Este método corresponde al inciso d-1.
+	 * Test- Inciso D-1
+	 * Se obtienen todos los datos de un Autor-Revisor
 	 */
 	@Test
 	public void getDatosUsuario() {
@@ -327,7 +327,8 @@ public class TestEntrega {
 	}
 
 	/**
-	 * Este método corresponde al inciso d-2.
+	 * Test- Inciso D-2
+	 * Se obtienen todos los trabajos asignados a un Revisor
 	 */
 	@Test
 	public void BuscarTrabajosAsignados() {
@@ -338,7 +339,8 @@ public class TestEntrega {
 	}
 
 	/**
-	 * Este método corresponde al inciso d-3.
+	 * Test- Inciso D-3
+	 * Se obtienen todas las revisiones dado un Revisor y un rango de fechas
 	 */
 	@Test
 	public void buscarRevisiones() {
@@ -351,7 +353,8 @@ public class TestEntrega {
 	}
 
 	/**
-	 * Este método corresponde al inciso d-4.
+	 * Test- Inciso D-4
+	 * Se obtienen todos los trabajos de un Autor determinado
 	 */
 	@Test
 	public void buscarTrabajosAutores() {
@@ -368,7 +371,9 @@ public class TestEntrega {
 	}
 
 	/**
-	 * Este método corresponde al inciso f.
+	 * Test- Inciso E
+	 * Se consultan los trabajos y sus propiedades
+	 * Búsqueda por ID
 	 */
 	@Test
 	public void buscarTrabajoByID() {
@@ -378,7 +383,9 @@ public class TestEntrega {
 	}
 
 	/**
-	 * Este método corresponde al inciso f-v2(string).
+	 * Test- Inciso E
+	 * Se consultan los trabajos y sus propiedades
+	 * Búsqueda por nombre.
 	 */
 	@Test
 	public void buscarTrabajoByNombre() {
@@ -387,8 +394,9 @@ public class TestEntrega {
 		assertTrue(work.getNombre().equals("JavaScript"));
 	}
 
-	/**
-	 * Este método corresponde al inciso g.
+	/**	 
+	 * Test- Inciso F
+	 * Se obtienen los trabajos de un Usuario con el Tema especificado
 	 */
 	@Test
 	public void buscarTrabajoNombreTema() {
@@ -396,6 +404,21 @@ public class TestEntrega {
 		List<Trabajo> trabajos = SistemaCacic.buscarTrabajoNombreTema("Eclipse", entityManager);
 		assertTrue(trabajos.size() == 1);
 		entityManager.close();
+	}
+	
+	
+	/**
+	 * After Class
+	 * Una vez ejecutada toda la prueba se borra la database y se cierra el entity manager factory
+	 */
+	@AfterClass
+	public static void closeFactory() {
+		 EntityManager entityManager= emf.createEntityManager();
+		 entityManager.getTransaction().begin();
+		 entityManager.createNativeQuery("DROP DATABASE TpEspecialArqWeb").executeUpdate();
+		 entityManager.getTransaction().commit();
+		 entityManager.close();
+		emf.close();
 	}
 
 }
